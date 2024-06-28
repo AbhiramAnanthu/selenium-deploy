@@ -6,11 +6,11 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-url = "https://python.langchain.com/v0.2/docs/introduction/"
-driver.get(url)
-header = driver.find_element(By.TAG_NAME, "h1").text
-print(header)
+def scraper(url):
+    driver=webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver.get(url)
+    header = driver.find_element(By.TAG_NAME, "h1").text
+    return header
 
 
 @app.route('/', methods=['POST'])
